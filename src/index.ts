@@ -8,6 +8,7 @@ import writeJson, {JSONStringifyable} from 'write-json-file';
 const SCHEDULE_URL =
 	'https://gamesdonequick.com/tracker/search/?type=run&event=25';
 const GDQ_ICON_URL = 'https://gamesdonequick.com/static/res/img/gdqlogo.png';
+const SCHEDULE_CHECK_INTERVAL_MS = 10 * 60 * 1000;
 
 namespace GdqSchedule {
 	export interface RawData {
@@ -221,3 +222,4 @@ const main = async () => {
 };
 
 main();
+setInterval(main, SCHEDULE_CHECK_INTERVAL_MS);
