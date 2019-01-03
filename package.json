@@ -4,6 +4,9 @@
 	"repository": "https://github.com/Hoishin/gdq-schedule-tracker",
 	"license": "MIT",
 	"author": "Hoishin <hoishinxii@gmail.com>",
+	"scripts": {
+		"start": "ts-node -T src/index.ts"
+	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged"
