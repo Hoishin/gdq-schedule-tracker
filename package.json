@@ -19,6 +19,7 @@
 		"load-json-file": "^5.1.0",
 		"lodash": "^4.17.11",
 		"ts-node": "^7.0.1",
+		"tslib": "^1.9.3",
 		"typescript": "^3.2.2",
 		"write-json-file": "^3.0.2"
 	},
