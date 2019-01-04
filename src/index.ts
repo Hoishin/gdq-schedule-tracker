@@ -181,7 +181,7 @@ namespace Db {
 
 const main = async () => {
 	try {
-		console.log(`Starting new loop: ${new Date().toISOString()}`)
+		console.log(`Starting new loop: ${new Date().toISOString()}`);
 		const [oldData, res] = await Promise.all([
 			Db.load(),
 			got.get(SCHEDULE_URL, {json: true}),
