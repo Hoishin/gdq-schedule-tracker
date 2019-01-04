@@ -181,14 +181,17 @@ namespace Db {
 
 const main = async () => {
 	try {
+		console.log(`Starting new loop: ${new Date().toISOString()}`)
 		const [oldData, res] = await Promise.all([
 			Db.load(),
 			got.get(SCHEDULE_URL, {json: true}),
 		]);
 		const newData = GdqSchedule.parse(res.body);
+		console.log(`Fetched new schedule with ${newData.length} runs`);
 		if (oldData) {
 			const diffs = Comparator.compare(oldData, newData);
 			if (diffs.length > 0) {
+				console.log(`${diffs.length} changes are detected`);
 				const embeds: Discord.EmbedMessage = {
 					title: 'GDQ Schedule Changed',
 					author: {
@@ -209,13 +212,18 @@ const main = async () => {
 					}),
 				};
 				await Discord.sendEmbeds([embeds]);
+			} else {
+				console.log('No change are detected');
 			}
 		} else {
+			console.log(`First time to fetch the schedule`);
 			await Discord.sendMessages(
 				'GDQ schedule change notifier is setup and ready!',
 			);
 		}
 		await Db.write(newData);
+		console.log('Done');
+		console.log();
 	} catch (error) {
 		console.error(error);
 	}
