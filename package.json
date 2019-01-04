@@ -36,8 +36,17 @@
 		"tslint-config-prettier": "^1.17.0"
 	},
 	"lint-staged": {
-		"*.{ts,tsx,json,yml}": "prettier --write",
-		"*.{ts,tsx}": "tslint --fix -t stylish",
-		"package.json": "sort-package-json"
+		"*.{ts,tsx,json,yml}": [
+			"prettier --write",
+			"git add"
+		],
+		"*.{ts,tsx}": [
+			"tslint --fix -t stylish",
+			"git add"
+		],
+		"package.json": [
+			"sort-package-json",
+			"git add"
+		]
 	}
 }
